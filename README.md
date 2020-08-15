@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Firebase App
 
-In this App I am exploring redux-state-management, as I have never used that before.
+In this App I am exploring redux-state-management, as I have never used that before. The styling and components are from Bulma.io.
 
 ## Motivation
 
