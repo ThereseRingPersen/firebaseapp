@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Firebase App
+
+In this App I am exploring redux-state-management, as I have never used that before.
+
+## Motivation
+
+I have previously not worked with redux-state-management and want to get my hands dirty. And using Firebase storage to store data.
+
 ## Available Scripts
 
 In the project directory, you can run:
