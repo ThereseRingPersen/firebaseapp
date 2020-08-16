@@ -1,35 +1,20 @@
-const services = [
-  {
-    id: "2asd8sa7d98",
-    user: "some_id_1",
-    category: "mathematics",
-    title: "I will teach you math fast!",
-    description:
-      "I am teaching highschool mathematics, algebra, triogometry. I can teach you anything!",
-    price: 10, //per hour
-    image:
-      "https://images.unsplash.com/photo-1535551951406-a19828b0a76b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: "ssa9d789as7",
-    user: "some_id_2",
-    category: "programming",
-    title: "I will teach you Programming fast!",
-    description: "I am teaching C++, C#, JS ...",
-    price: 10, //per hour
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: "ssa9d789as8",
-    user: "some_id_3",
-    category: "Linux",
-    title: "Learn Linux!",
-    description: "Learn about Linux..",
-    price: 10, //per hour
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-  },
-];
+import { createStore, combineReducers } from 'redux';
 
-export const getServices = () => [...services];
+const initStore = () => {
+  const app = combineReducers({
+    service: (state = { items: [] }, action) => {
+      if (action.type === 'FETCH_SERVICES') {
+        return { ...state, items: action.services };
+      }
+
+      return state;
+    },
+  });
+  const browserSupport =
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION__();
+  const store = createStore(app, browserSupport);
+  return store;
+};
+
+export default initStore;
