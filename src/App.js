@@ -4,7 +4,7 @@ import initStore from './store';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Navbar from 'components/Navbar';
-import HomePage from 'pages/HomePage';
+import Home from 'pages/Home';
 import ServicesPage from 'pages/ServicesPage';
 import FaqPage from 'pages/FaqPage';
 import ProfilePage from 'pages/ProfilePage';
@@ -37,7 +37,7 @@ function App() {
             <FaqPage />
           </Route>
           <Route path='/'>
-            <HomePage />
+            <Home />
           </Route>
         </Switch>
       </Router>
