@@ -13,14 +13,12 @@ const addLoggerToDispatch = (store) => (nextDispatch) => (action) => {
   };
 };
 
-const addPromiseToDispatch = (store) => {
-  return (action) => {
-    if (typeof action.then === 'function') {
-      return action.then(dispatch);
-    }
+const addPromiseToDispatch = (store) => (nextDispatch) => (action) => {
+  if (typeof action.then === 'function') {
+    return action.then(nextDispatch);
+  }
 
-    return dispatch(action);
-  };
+  return nextDispatch(action);
 };
 
 const applyMiddlewares = (store, middlewares) => {
