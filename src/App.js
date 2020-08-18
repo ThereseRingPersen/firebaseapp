@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Navbar from 'components/Navbar';
 import Home from 'pages/Home';
-import ServicesPage from 'pages/ServicesPage';
+import Services from 'pages/Services';
 import FaqPage from 'pages/FaqPage';
-import ProfilePage from 'pages/ProfilePage';
+import Profile from 'pages/Profile';
 
-import RegisterPage from 'pages/RegisterPage';
-import LoginPage from 'pages/LoginPage';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
 
 const store = initStore();
 function App() {
@@ -22,16 +22,16 @@ function App() {
         <Sidebar />
         <Switch>
           <Route path='/services'>
-            <ServicesPage />
+            <Services />
           </Route>
           <Route path='/login'>
-            <LoginPage />
+            <Login />
           </Route>
           <Route path='/register'>
-            <RegisterPage />
+            <Register />
           </Route>
           <Route path='/profile'>
-            <ProfilePage />
+            <Profile />
           </Route>
           <Route path='/faq'>
             <FaqPage />
