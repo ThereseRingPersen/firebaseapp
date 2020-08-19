@@ -6,6 +6,7 @@ import Sidebar from 'components/Sidebar';
 import Navbar from 'components/Navbar';
 import Home from 'pages/Home';
 import Services from 'pages/Services';
+import ServiceDetails from 'pages/ServiceDetails';
 import FaqPage from 'pages/FaqPage';
 import Profile from 'pages/Profile';
 
@@ -21,6 +22,9 @@ function App() {
         <Navbar id={'navbar-clone'} />
         <Sidebar />
         <Switch>
+          <Route path='/services/:serviceId'>
+            <ServiceDetails />
+          </Route>
           <Route path='/services'>
             <Services />
           </Route>

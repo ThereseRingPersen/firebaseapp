@@ -5,6 +5,9 @@ import ServiceItem from 'components/ServiceItem';
 import { fetchServices } from 'actions';
 
 class Home extends React.Component {
+  state = {
+    services: [],
+  };
   componentDidMount() {
     this.props.dispatch(fetchServices());
   }
@@ -15,7 +18,6 @@ class Home extends React.Component {
     ));
 
   render() {
-    const { services } = this.props;
     return (
       <div>
         <section className='hero is-default is-bold'>
@@ -60,7 +62,9 @@ class Home extends React.Component {
             </div>
 
             <div className='content-wrapper'>
-              <div className='columns'>{this.renderServices(services)}</div>
+              <div className='columns'>
+                {this.renderServices(this.props.services)}
+              </div>
             </div>
           </div>
         </section>
