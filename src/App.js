@@ -7,7 +7,7 @@ import Navbar from 'components/Navbar';
 import Home from 'pages/Home';
 import Services from 'pages/Services';
 import ServiceDetails from 'pages/ServiceDetails';
-import FaqPage from 'pages/FaqPage';
+import Faq from 'pages/Faq';
 import Profile from 'pages/Profile';
 
 import Register from 'pages/Register';
@@ -38,7 +38,7 @@ function App() {
             <Profile />
           </Route>
           <Route path='/faq'>
-            <FaqPage />
+            <Faq />
           </Route>
           <Route path='/'>
             <Home />

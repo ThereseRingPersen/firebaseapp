@@ -1,16 +1,28 @@
-import { FETCH_SERVICES_SUCCESS } from 'types';
+import {
+  FETCH_SERVICES_SUCCESS,
+  FETCH_SERVICES_REQUEST,
+  FETCH_SERVICES_ERROR,
+} from 'types';
 
-const INITIAL_STATE = {
-  items: [],
-};
-
-const services = (state = INITIAL_STATE, action) => {
+const initServices = (state = [], action) => {
   switch (action.type) {
     case FETCH_SERVICES_SUCCESS:
-      return { ...state, items: action.services };
+      return {
+        services: action.services,
+        status: 'SUCCESS',
+      };
+    case FETCH_SERVICES_REQUEST:
+      return {
+        status: 'LOADING',
+      };
+    case FETCH_SERVICES_ERROR:
+      return {
+        status: 'ERROR',
+      };
+
     default:
       return state;
   }
 };
 
-export default services;
+export default initServices;

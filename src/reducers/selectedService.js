@@ -1,13 +1,18 @@
-import { FETCH_SERVICE_SUCCESS } from 'types';
+import {
+  FETCH_SERVICE_SUCCESS,
+  FETCH_SERVICE_ERROR,
+  FETCH_SERVICE_REQUEST,
+} from 'types';
 
-const INITIAL_STATE = {
-  item: {},
-};
-
-const selectedService = (state = INITIAL_STATE, action) => {
+const selectedService = (state = {}, action) => {
   switch (action.type) {
     case FETCH_SERVICE_SUCCESS:
-      return { item: action.service };
+      console.log('in reducer ' + action.service);
+      return { service: action.service, status: 'SUCCESS' };
+    case FETCH_SERVICE_REQUEST:
+      return { status: 'LOADING' };
+    case FETCH_SERVICE_ERROR:
+      return { status: 'ERROR' };
     default:
       return state;
   }

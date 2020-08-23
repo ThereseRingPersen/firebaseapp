@@ -1,18 +1,27 @@
 import React, { useEffect } from 'react';
 import { fetchServiceById } from 'actions';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-const ServiceDetails = (props) => {
+const ServiceDetails = () => {
   const { serviceId } = useParams();
-  const { dispatch } = props;
+  const service = useSelector((state) => state.selectedService);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchServiceById(serviceId));
+    fetchServiceById(serviceId, dispatch);
   }, [serviceId, dispatch]);
 
-  const { service } = props;
+  return (
+    <>
+      {service.status === 'LOADING' && <div> Loading </div>}
+      {service.status === 'SUCCESS' && renderService(service.service)}
+      {service.status === 'ERROR' && <div> Error </div>}
+    </>
+  );
+};
 
+function renderService(service) {
   return (
     <section className='hero is-fullheight is-default is-bold'>
       <div className='hero-body'>
@@ -49,8 +58,6 @@ const ServiceDetails = (props) => {
       </div>
     </section>
   );
-};
+}
 
-const mapStateToProps = (state) => ({ service: state.selectedService.item });
-
-export default connect(mapStateToProps)(ServiceDetails);
+export default ServiceDetails;

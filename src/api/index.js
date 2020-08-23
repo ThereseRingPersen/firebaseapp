@@ -1,5 +1,6 @@
 import db from 'db';
 
+
 export const fetchServiceById = (serviceId) =>
   db
     .collection('services')

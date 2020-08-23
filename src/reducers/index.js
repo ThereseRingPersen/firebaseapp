@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 import services from './services';
 import selectedService from './selectedService';
 
-const app = combineReducers({
+const appReducers = combineReducers({
   services,
   selectedService,
 });
 
-export default app;
+export default appReducers;
