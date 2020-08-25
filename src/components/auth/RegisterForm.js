@@ -8,9 +8,6 @@ import { formValidators } from './utils';
 const RegisterForm = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const getFormData = (data) => {
-    console.log(data);
-  };
   return (
     <form onSubmit={handleSubmit(props.onRegister)}>
       <div className='field'>

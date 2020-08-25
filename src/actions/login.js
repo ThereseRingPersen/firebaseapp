@@ -1,10 +1,11 @@
-import { login } from 'api';
+import * as api from 'api';
 import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_REQUEST,
   LOGIN_USER_ERROR,
 } from 'types';
-export const login = (loginFormData, dispatch) => {
+
+export const loginUser = (loginFormData, dispatch) => {
   dispatch(loginUserPending);
   api
     .login({ ...loginFormData })
@@ -12,7 +13,7 @@ export const login = (loginFormData, dispatch) => {
       dispatch(loginUserSuccess());
     })
     .catch((error) => {
-      dispatch(registerUserError(error));
+      dispatch(loginUserError(error));
     });
 };
 

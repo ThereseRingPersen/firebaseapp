@@ -11,7 +11,7 @@ const registerUser = (state = {}, action) => {
     case REGISTER_USER_REQUEST:
       return { status: 'LOADING' };
     case REGISTER_USER_ERROR:
-      return { status: 'ERROR', error= action.error };
+      return { status: 'ERROR', error: action.error };
     default:
       return state;
   }

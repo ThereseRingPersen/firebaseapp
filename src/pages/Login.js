@@ -1,9 +1,17 @@
-import React from 'react';
-import useForm from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 import { Redirect } from 'react-router-dom';
+import { loginUser } from 'actions';
 
 const Login = () => {
+  const state = useSelector((state) => state.loginUser);
+  const dispatch = useDispatch();
+  const [redirect, setRedirect] = useState(false);
+  const { addToast } = useToasts();
+  const { register, handleSubmit, errors } = useForm();
+
   useEffect(() => {
     if (state) {
       if (state.status === 'SUCCESS') {
@@ -12,7 +20,7 @@ const Login = () => {
           autoDismiss: true,
           autoDismissTimeout: 3000,
         });
-         setRedirect(true);
+        setRedirect(true);
       } else if (state.status === 'ERROR') {
         addToast(state.error, {
           appearance: 'error',
@@ -24,7 +32,7 @@ const Login = () => {
   }, [state]);
 
   const onLogin = (loginData) => {
-    login(loginData, dispatch);
+    loginUser(loginData, dispatch);
   };
 
   if (redirect) {
@@ -45,7 +53,7 @@ const Login = () => {
               <div className='field'>
                 <div className='control'>
                   <input
-                    ref={register}
+                    ref={register({ required: true })}
                     name='email'
                     className='input is-large'
                     type='email'
@@ -53,17 +61,16 @@ const Login = () => {
                     autoComplete='email'
                   />
                   <div className='form-error'>
-                    <span className='help is-danger'>Email is required</span>
-                    <span className='help is-danger'>
-                      Email address is not valid
-                    </span>
+                    {errors?.email?.type === 'required' && (
+                      <span className='help is-danger'>Email is required</span>
+                    )}
                   </div>
                 </div>
               </div>
               <div className='field'>
                 <div className='control'>
                   <input
-                    ref={register}
+                    ref={register({ required: true })}
                     name='password'
                     className='input is-large'
                     type='password'
@@ -71,7 +78,12 @@ const Login = () => {
                     autoComplete='current-password'
                   />
                   <div className='form-error'>
-                    <span className='help is-danger'>Password is required</span>
+                    {errors?.password?.type === 'required' && (
+                      <span className='help is-danger'>
+                        {' '}
+                        Password is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Faq from './pages/Faq';
 import Profile from './pages/Profile';
 import Services from './pages/Services';
-import ServiceDetails from './pages/ServiceDetail';
+import ServiceDetails from './pages/ServiceDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
