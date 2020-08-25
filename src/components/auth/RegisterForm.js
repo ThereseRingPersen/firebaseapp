@@ -1,18 +1,18 @@
 /* eslint no-useless-escape: 0 */
 
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { formValidators } from './utils';
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
   const { register, handleSubmit, errors } = useForm();
 
   const getFormData = (data) => {
     console.log(data);
   };
   return (
-    <form onSubmit={handleSubmit(getFormData)}>
+    <form onSubmit={handleSubmit(props.onRegister)}>
       <div className='field'>
         <div className='control'>
           <input
