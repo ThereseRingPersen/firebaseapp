@@ -74,8 +74,10 @@ const RegisterForm = () => {
               {errors.avatar.type === 'required' && (
                 <span className='help is-danger'>Avatar is required</span>
               )}
-              {errors.avatar.type === 'pattern' && (
-                <span className='help is-danger'>Avatar url is not valid</span>
+              {errors.avatar.type === 'isValidImage' && (
+                <span className='help is-danger'>
+                  Avatar extenstion is not valid
+                </span>
               )}
             </div>
           )}
