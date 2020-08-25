@@ -7,12 +7,11 @@ import {
 const registerUser = (state = {}, action) => {
   switch (action.type) {
     case REGISTER_USER_SUCCESS:
-      console.log('in reducer ' + action.registered);
-      return { service: action.registered, status: 'SUCCESS' };
+      return { status: 'SUCCESS', user: action.registered };
     case REGISTER_USER_REQUEST:
       return { status: 'LOADING' };
     case REGISTER_USER_ERROR:
-      return { status: 'ERROR' };
+      return { status: 'ERROR', error= action.error };
     default:
       return state;
   }

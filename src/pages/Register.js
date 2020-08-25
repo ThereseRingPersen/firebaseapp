@@ -1,16 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
 
 import RegisterForm from 'components/auth/RegisterForm';
 import { register } from 'actions';
 
 const Register = () => {
-  const data = useSelector((state) => state.userData);
+  const state = useSelector((state) => state.registerUser);
   const dispatch = useDispatch();
+
+  const [redirect, setRedirect] = useState(false);
+  const { addToast } = useToasts();
+
+  useEffect(() => {
+    if (state) {
+      if (state.status === 'SUCCESS') {
+        addToast('Successfully created profile', {
+          appearance: 'success',
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        });
+      } else if (state.status === 'ERROR') {
+        addToast(state.error, {
+          appearance: 'error',
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        });
+        setRedirect(true);
+      }
+    }
+  }, [state]);
 
   const registerUser = (userData) => {
     register(userData, dispatch);
   };
+  if (redirect) {
+    return <Redirect to='/' />;
+  }
   return (
     <div className='auth-page'>
       <div className='container has-text-centered'>

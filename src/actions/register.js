@@ -10,7 +10,7 @@ export const register = (registerFormData, dispatch) => {
   api
     .register({ ...registerFormData })
     .then((_) => {
-      dispatch(registerUserSuccess(userProfile));
+      dispatch(registerUserSuccess(registerFormData));
     })
     .catch((error) => {
       dispatch(registerUserError(error));

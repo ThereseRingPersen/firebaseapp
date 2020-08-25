@@ -6,6 +6,7 @@ import registerUser from './registerUser';
 const appReducers = combineReducers({
   services,
   selectedService,
+  registerUser,
 });
 
 export default appReducers;
