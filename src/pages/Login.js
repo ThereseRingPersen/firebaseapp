@@ -1,6 +1,36 @@
 import React from 'react';
+import useForm from 'react-hook-form';
+import { useToasts } from 'react-toast-notifications';
+import { Redirect } from 'react-router-dom';
 
 const Login = () => {
+  useEffect(() => {
+    if (state) {
+      if (state.status === 'SUCCESS') {
+        addToast('Successfully created profile', {
+          appearance: 'success',
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        });
+         setRedirect(true);
+      } else if (state.status === 'ERROR') {
+        addToast(state.error, {
+          appearance: 'error',
+          autoDismiss: true,
+          autoDismissTimeout: 3000,
+        });
+      }
+    }
+  }, [state]);
+
+  const onLogin = (loginData) => {
+    login(loginData, dispatch);
+  };
+
+  if (redirect) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <div className='auth-page'>
       <div className='container has-text-centered'>
@@ -11,15 +41,16 @@ const Login = () => {
             <figure className='avatar'>
               <img src='https://placehold.it/128x128' />
             </figure>
-            <form>
+            <form onSubmit={handleSubmit(onLogin)}>
               <div className='field'>
                 <div className='control'>
                   <input
+                    ref={register}
+                    name='email'
                     className='input is-large'
                     type='email'
                     placeholder='Your Email'
-                    autofocus=''
-                    autocomplete='email'
+                    autoComplete='email'
                   />
                   <div className='form-error'>
                     <span className='help is-danger'>Email is required</span>
@@ -32,10 +63,12 @@ const Login = () => {
               <div className='field'>
                 <div className='control'>
                   <input
+                    ref={register}
+                    name='password'
                     className='input is-large'
                     type='password'
                     placeholder='Your Password'
-                    autocomplete='current-password'
+                    autoComplete='current-password'
                   />
                   <div className='form-error'>
                     <span className='help is-danger'>Password is required</span>
@@ -43,7 +76,7 @@ const Login = () => {
                 </div>
               </div>
               <button
-                type='button'
+                type='submit'
                 className='button is-block is-info is-large is-fullwidth'
               >
                 Sign In

@@ -21,13 +21,13 @@ const Register = () => {
           autoDismiss: true,
           autoDismissTimeout: 3000,
         });
+        setRedirect(true);
       } else if (state.status === 'ERROR') {
         addToast(state.error, {
           appearance: 'error',
           autoDismiss: true,
           autoDismissTimeout: 3000,
         });
-        setRedirect(true);
       }
     }
   }, [state]);
