@@ -3,6 +3,8 @@ import { fetchServiceById } from 'actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import Spinner from 'components/Spinner/Spinner';
+
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const service = useSelector((state) => state.selectedService);
@@ -14,7 +16,7 @@ const ServiceDetails = () => {
 
   return (
     <>
-      {service.status === 'LOADING' && <div> Loading </div>}
+      {service.status === 'LOADING' && <Spinner />}
       {service.status === 'SUCCESS' && renderService(service.service)}
       {service.status === 'ERROR' && <div> Error </div>}
     </>
