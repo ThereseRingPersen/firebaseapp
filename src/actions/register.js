@@ -10,7 +10,7 @@ export const register = (registerFormData, dispatch) => {
   api
     .register({ ...registerFormData })
     .then((_) => {
-      dispatch(registerUserSuccess());
+      dispatch(registerUserSuccess(userProfile));
     })
     .catch((error) => {
       dispatch(registerUserError(error));
@@ -23,10 +23,10 @@ function registerUserPending() {
   };
 }
 
-function registerUserSuccess() {
+function registerUserSuccess(userProfile) {
   return {
     type: REGISTER_USER_SUCCESS,
-    registered: true,
+    userProfile,
   };
 }
 

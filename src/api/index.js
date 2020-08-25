@@ -3,6 +3,10 @@ import db from 'db';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+export const createUserProfile = (userProfile) => {
+  db.collection('profile').doc(userProfile.uid).set(userProfile);
+};
+
 export const fetchServiceById = (serviceId) =>
   db
     .collection('services')
@@ -22,14 +26,23 @@ export const fetchServices = () =>
       return services;
     });
 
-    export const register = async ({ email, password, fullName, avatar }) => {
-      try {
-        const res = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password);
-        const { user } = res;
-        return true;
-      } catch (error) {
-        return Promise.reject(error.message);
-      }
+export const register = async ({ email, password, fullName, avatar }) => {
+  try {
+    const res = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
+    const { user } = res;
+    const userProfile = {
+      uid: user.uid,
+      fullName,
+      email,
+      avatar,
+      services: [],
+      description: '',
     };
+    await createUserProfile(userProfile);
+    return userProfile;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
