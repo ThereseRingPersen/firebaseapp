@@ -23,7 +23,7 @@ function loginUserPending() {
   };
 }
 
-function loginUserSuccess(userProfile) {
+function loginUserSuccess() {
   return {
     type: LOGIN_USER_SUCCESS,
   };
