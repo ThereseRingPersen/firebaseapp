@@ -14,7 +14,7 @@ export const storeAuthUser = (authUser, dispatch) => {
     return;
   }
 };
-export const logout = (uid) => (dispatch) =>
+export const logout = (uid, dispatch) =>
   api
     .logout()
     .then((_) => {

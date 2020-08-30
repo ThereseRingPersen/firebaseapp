@@ -42,7 +42,7 @@ export function createUserProfile(userProfile) {
   db.collection('profile').doc(userProfile.uid).set(userProfile);
 }
 export function getUserProfile(uid) {
-  db.collection('profiles')
+  db.collection('profile')
     .doc(uid)
     .get()
     .then((snapshot) => ({ uid, ...snapshot.data() }));
