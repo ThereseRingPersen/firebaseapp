@@ -15,7 +15,7 @@ const Login = () => {
   useEffect(() => {
     if (state) {
       if (state.status === 'SUCCESS') {
-        addToast('Successfully created profile', {
+        addToast('Successfully logged in.', {
           appearance: 'success',
           autoDismiss: true,
           autoDismissTimeout: 3000,
