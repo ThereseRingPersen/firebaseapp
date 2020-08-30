@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastProvider } from 'react-toast-notifications';
 
 import { Provider } from 'react-redux';
 import initStore from './store';
+
+import { onAuthStateChanged, storeAuthUser } from 'actions';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -11,6 +13,12 @@ import ServiceApp from 'ServiceApp';
 const store = initStore();
 
 function App() {
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged((authUser) => {
+      store.dispatch(storeAuthUser(authUser));
+    });
+    return () => unSubscribe();
+  });
   return (
     <Provider store={store}>
       <ToastProvider>
