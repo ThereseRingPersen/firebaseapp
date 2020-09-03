@@ -25,7 +25,7 @@ export async function register({ email, password, fullName, avatar }) {
 }
 
 export function logout() {
-  firebase.auth().signOut();
+  return firebase.auth().signOut();
 }
 export function login({ email, password }) {
   return firebase
@@ -42,7 +42,8 @@ export function createUserProfile(userProfile) {
   db.collection('profile').doc(userProfile.uid).set(userProfile);
 }
 export function getUserProfile(uid) {
-  db.collection('profile')
+  return db
+    .collection('profile')
     .doc(uid)
     .get()
     .then((snapshot) => ({ uid, ...snapshot.data() }));
