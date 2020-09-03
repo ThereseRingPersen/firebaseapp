@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchServices } from 'actions';
 
-import Spinner from 'components/Spinner/Spinner';
+import Spinner from 'components/Spinner';
 import Hero from 'components/Hero';
 import ServiceList from 'components/ServicesList';
 
