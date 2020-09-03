@@ -15,7 +15,7 @@ const store = initStore();
 function App() {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged((authUser) => {
-      store.dispatch(storeAuthUser(authUser));
+      storeAuthUser(authUser, store.dispatch);
     });
     return () => unSubscribe();
   });
