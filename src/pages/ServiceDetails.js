@@ -3,7 +3,7 @@ import { fetchServiceById } from 'actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import Spinner from 'components/Spinner/Spinner';
+import Spinner from 'components/Spinner';
 
 const ServiceDetails = () => {
   const { serviceId } = useParams();
